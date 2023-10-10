@@ -58,9 +58,7 @@ fn main() {
     for _ in 0..100 {
         let h = std::thread::spawn(|| {
             let pid = clone(|| {
-                println!("hello from child process");
                 nix::unistd::setgroups(&[Gid::from_raw(0)]).unwrap();
-                println!("bye from child process");
                 0
             })
             .unwrap();
